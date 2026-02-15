@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Craicathon — 21ú Márta 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=DM+Sans:wght@400;500;700&family=MedievalSharp&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #000000;
+  --bg-card: #080808;
+  --green: #2dd882;
+  --green-light: #4aeea0;
+  --gold: #d4aa50;
+  --text: #c8d0d8;
+  --text-bright: #e8f0f8;
+  --text-dim: #5a6a7a;
+  --text-faint: #2a3a4a;
+  --border: #1a2a3a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Fira Code', monospace; overflow: hidden; height: 100vh; }
+
+/* GREEN STATIC TOP */
+.static-top {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  background: url(greenstatic.png) repeat-x left top;
+  background-size: auto 80px;
+  z-index: 99;
+  pointer-events: none;
+}
+
+/* TOP BAR - full width, no border, part of the page */
+.top-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 32px;
+  gap: 18px;
+  z-index: 100;
+}
+.top-bar a { text-decoration: none; transition: all 0.2s; }
+.top-bar .apply-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px; font-weight: 600;
+  color: var(--text-bright);
+  letter-spacing: 0.3px;
+}
+.top-bar .apply-btn:hover { color: var(--green); }
+.top-bar .ig {
+  color: var(--text-dim);
+  display: flex; align-items: center;
+  border: 1.5px solid var(--text-dim);
+  border-radius: 6px;
+  padding: 5px;
+}
+.top-bar .ig:hover { color: var(--green); border-color: var(--green); }
+
+/* LAYOUT */
+.layout { display: flex; height: 100vh; padding-top: 52px; }
+
+/* LEFT PANEL */
+.left-panel {
+  width: 42%;
+  min-width: 350px;
+  max-width: 470px;
+  height: calc(100vh - 52px);
+  position: fixed;
+  top: 52px; left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+.left-panel::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, var(--text-faint) 0.5px, transparent 0.5px);
+  background-size: 30px 30px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+.left-content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  width: 100%; max-width: 370px;
+}
+
+.logo-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 38px; font-weight: 700;
+  color: var(--green);
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 0 #0a4a2a;
+}
+
+.triskelion-area { width: 190px; height: 180px; margin: 0 auto; }
+.triskelion-area svg { width: 100%; height: 100%; }
+
+.bigi-linn {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 26px; color: var(--text-bright);
+  letter-spacing: 2px;
+}
+
+/* Neofetch */
+.nf {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px; line-height: 1.8;
+  width: 100%; padding: 0 4px; margin-top: 2px;
+}
+.nf .tl { font-weight: 700; }
+.nf .u { color: var(--green); }
+.nf .s { color: var(--text-dim); }
+.nf .h { color: var(--text-bright); }
+.nf .dv { color: var(--border); }
+.nf .il { opacity: 0; white-space: nowrap; }
+.nf .il.on { opacity: 1; transition: opacity 0.3s; }
+.nf .k { color: var(--green); font-weight: 600; }
+.nf .v { color: var(--text); }
+.nf .cb { display: flex; gap: 4px; margin-top: 5px; opacity: 0; }
+.nf .cb.on { opacity: 1; transition: opacity 0.3s; }
+.nf .cb span { width: 14px; height: 14px; border-radius: 2px; }
+
+.cursor { display: inline-block; width: 7px; height: 13px; background: var(--green); animation: blink 1s step-end infinite; vertical-align: text-bottom; margin-left: 1px; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.loc {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; color: var(--text-dim);
+  letter-spacing: 2px; margin-top: 4px;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+  margin-left: 42%;
+  flex: 1;
+  height: calc(100vh - 52px);
+  overflow-y: auto;
+  padding: 20vh 44px 80px;
+}
+.right-panel::-webkit-scrollbar { width: 5px; }
+.right-panel::-webkit-scrollbar-track { background: var(--bg); }
+.right-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* SECTIONS */
+.sec { margin-bottom: 48px; max-width: 500px; }
+
+.q {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 24px;
+  color: var(--green);
+  line-height: 1.35; margin-bottom: 14px;
+}
+
+p { font-size: 15px; line-height: 1.7; margin-bottom: 10px; }
+
+/* CHIPS */
+.tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; color: var(--green);
+  letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; padding: 6px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px; color: var(--text);
+  transition: all 0.2s;
+}
+.chip:hover { border-color: var(--green); color: var(--green); }
+
+/* CARDS */
+.cards { display: flex; flex-direction: column; gap: 12px; }
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 20px;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--green); }
+.card .ct {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px; font-weight: 700;
+  color: var(--green); margin-bottom: 5px;
+}
+.card p { font-size: 14px; margin-bottom: 0; line-height: 1.6; }
+.card a {
+  display: inline-block; margin-top: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; color: var(--green);
+  text-decoration: none; font-weight: 600;
+}
+.card a:hover { color: var(--green-light); }
+
+/* FOOTER */
+.footer {
+  margin-top: 40px; padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; color: var(--text-faint);
+  letter-spacing: 1px; max-width: 500px;
+}
+
+/* MOBILE */
+@media (max-width: 860px) {
+  body { overflow: auto; height: auto; }
+  .layout { flex-direction: column; height: auto; }
+  .left-panel {
+    position: relative; top: 0;
+    width: 100%; min-width: 0; max-width: none;
+    height: auto; padding: 32px 24px 24px;
+  }
+  .right-panel { margin-left: 0; height: auto; overflow: visible; padding: 28px 24px 50px; }
+  .logo-text { font-size: 26px; }
+  .triskelion-area { width: 140px; height: 130px; }
+  .bigi-linn { font-size: 20px; }
+}
+@media (max-width: 480px) {
+  .top-bar { padding: 0 16px; gap: 12px; }
+  .right-panel { padding: 22px 18px 40px; }
+  .q { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="static-top"></div>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="#apply" class="apply-btn">Apply Now</a>
+  <a href="https://instagram.com/craicathon" target="_blank" class="ig">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+  </a>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- LEFT -->
+  <div class="left-panel">
+    <video autoplay muted loop playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;object-position:center center;">
+      <source src="finallogo.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right-panel" id="rp">
+
+    <div class="sec">
+      <div class="q">Build something for Irish language and culture in a day.</div>
+      <p>Coders, Irish speakers, artists, musicians, and anyone curious — form a team, make something, demo it, win prizes. No fluency or coding experience needed.</p>
+    </div>
+
+    <div class="sec">
+      <div class="tag">What you could build</div>
+      <div class="chips">
+        <span class="chip">Irish language games</span>
+        <span class="chip">Tools as Gaeilge</span>
+        <span class="chip">Generative art × mythology</span>
+        <span class="chip">Browser extensions</span>
+        <span class="chip">Interactive storytelling</span>
+        <span class="chip">Trad music tech</span>
+        <span class="chip">Keyboard / translation tools</span>
+        <span class="chip">Something stupid and fun</span>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="tag">Inspiration</div>
+      <p>Find some inspiration from <a href="https://www.instagram.com/reel/DN2394oWMbz/" target="_blank" style="color:var(--green);text-decoration:none;font-weight:600;">NAMACO</a> and from <a href="https://simondarcyonline.com/" target="_blank" style="color:var(--green);text-decoration:none;font-weight:600;">Simon Darcy</a>.</p>
+    </div>
+
+    <div class="sec" id="apply">
+      <div class="tag">Get involved</div>
+      <div class="cards">
+        <div class="card">
+          <div class="ct">→ Participate</div>
+          <p>Join a team, build something in a day, present it, maybe win a prize. You don't need to code or speak Irish — just bring curiosity and ideas.</p>
+          <a href="https://luma.com/b3qdbwg3" target="_blank">Apply to participate →</a>
+        </div>
+        <div class="card">
+          <div class="ct">→ Sponsor</div>
+          <p>Help us cover food, prizes, and venue. Your logo on everything, a mention on stage, and direct access to 100 builders and creatives.</p>
+          <a href="mailto:contact@craicathon.ie">Get in touch →</a>
+        </div>
+        <div class="card">
+          <div class="ct">→ Promote</div>
+          <p>Know Irish speakers, coders, designers, or students who'd love this? Share it with your networks and communities.</p>
+          <a href="#">Share Craicathon →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Lucy Ní Dhálaigh &amp; Gavin Doyle · Seachtain na Gaeilge 2026 · contact@craicathon.ie
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const ll = document.querySelectorAll('#nf .il');
+  const cb = document.querySelector('#nf .cb');
+  ll.forEach((l, i) => setTimeout(() => l.classList.add('on'), 300 + i * 200));
+  setTimeout(() => cb.classList.add('on'), 300 + ll.length * 200 + 150);
+});
+</script>
+</body>
+</html>
