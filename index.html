@@ -33,60 +33,42 @@ body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Mono', 
   pointer-events: none;
 }
 
-/* TOP BAR */
-.top-bar {
+/* INSTAGRAM ICON — below static banner */
+.ig-fixed {
   position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 52px;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0 32px;
-  gap: 18px;
-  z-index: 100;
-}
-.top-bar a { text-decoration: none; transition: all 0.2s; }
-.top-bar .apply-btn {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 14px; font-weight: 600;
-  color: var(--text-bright);
-  letter-spacing: 0.5px;
-}
-.top-bar .apply-btn:hover { color: var(--green); }
-.top-bar .ig {
-  color: var(--text-dim);
+  top: 88px; right: 32px;
+  z-index: 101;
+  color: var(--green);
   display: flex; align-items: center;
-  border: 1.5px solid var(--text-dim);
+  border: 1.5px solid var(--green);
   border-radius: 6px;
   padding: 5px;
+  text-decoration: none;
+  transition: all 0.2s;
 }
-.top-bar .ig:hover { color: var(--green); border-color: var(--green); }
+.ig-fixed:hover { color: var(--green-light); border-color: var(--green-light); }
 
 /* LAYOUT */
 .layout {
   display: flex;
-  padding-top: 52px;
+  padding-top: 80px;
   width: 100%;
-  min-height: calc(100vh - 52px);
-  padding-left: 48px;
-  padding-right: 48px;
+  max-width: 1080px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-left: 32px;
+  padding-right: 32px;
 }
 
 /* LEFT PANEL */
 .left-panel {
   width: 42%;
-  min-width: 350px;
+  min-width: 320px;
   max-width: 470px;
-  height: calc(100vh - 52px);
+  height: calc(100vh - 80px);
   position: sticky;
-  top: 52px;
+  top: 80px;
   flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
   overflow: hidden;
   align-self: flex-start;
 }
@@ -108,7 +90,7 @@ body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Mono', 
 /* RIGHT PANEL */
 .right-panel {
   flex: 1;
-  padding: 8vh 0 100px 48px;
+  padding: 4vh 0 100px 48px;
 }
 
 /* SECTIONS */
@@ -190,8 +172,9 @@ p { font-family: 'IBM Plex Mono', monospace; font-size: 14px; line-height: 1.8; 
     width: 100%; min-width: 0; max-width: none;
     height: 100vw; padding: 0;
   }
-  .layout { padding-left: 0; padding-right: 0; }
+  .layout { padding-left: 0; padding-right: 0; padding-top: 50px; max-width: 100%; }
   .right-panel { height: auto; overflow: visible; padding: 28px 24px 100px; }
+  .ig-fixed { display: none; }
   .q { font-size: 22px; }
   .static-top { height: 50px; background-size: auto 50px; }
   .top-bar { display: none; }
@@ -222,13 +205,10 @@ p { font-family: 'IBM Plex Mono', monospace; font-size: 14px; line-height: 1.8; 
 
 <div class="static-top"></div>
 
-<!-- TOP BAR (desktop) -->
-<div class="top-bar">
-  <a href="https://luma.com/b3qdbwg3" target="_blank" class="apply-btn">Apply Now</a>
-  <a href="https://instagram.com/craicathon" target="_blank" class="ig">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-  </a>
-</div>
+<!-- INSTAGRAM (desktop, below static banner) -->
+<a href="https://instagram.com/craicathon" target="_blank" class="ig-fixed">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+</a>
 
 <!-- MOBILE FLOATING APPLY BUTTON -->
 <a href="https://luma.com/b3qdbwg3" target="_blank" class="mobile-apply">Apply Now</a>
@@ -238,8 +218,9 @@ p { font-family: 'IBM Plex Mono', monospace; font-size: 14px; line-height: 1.8; 
 
   <!-- LEFT -->
   <div class="left-panel">
-    <video id="bgvid" autoplay muted loop playsinline webkit-playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;object-position:center center;">
+    <video id="bgvid" autoplay muted loop playsinline webkit-playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;object-position:center top;">
       <source src="finallogo.mp4" type="video/mp4">
+
     </video>
   </div>
 
