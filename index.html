@@ -21,7 +21,7 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: 'Fira Code', monospace; overflow: hidden; height: 100vh; }
+body { background: var(--bg); color: var(--text); font-family: 'Fira Code', monospace; overflow-y: auto; overflow-x: hidden; height: auto; }
 
 /* GREEN STATIC TOP */
 .static-top {
@@ -65,7 +65,13 @@ body { background: var(--bg); color: var(--text); font-family: 'Fira Code', mono
 .top-bar .ig:hover { color: var(--green); border-color: var(--green); }
 
 /* LAYOUT */
-.layout { display: flex; height: 100vh; padding-top: 52px; }
+.layout {
+  display: flex;
+  padding-top: 52px;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: calc(100vh - 52px);
+}
 
 /* LEFT PANEL */
 .left-panel {
@@ -73,14 +79,16 @@ body { background: var(--bg); color: var(--text); font-family: 'Fira Code', mono
   min-width: 350px;
   max-width: 470px;
   height: calc(100vh - 52px);
-  position: fixed;
-  top: 52px; left: 0;
+  position: sticky;
+  top: 52px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0;
   overflow: hidden;
+  align-self: flex-start;
 }
 .left-panel::before {
   content: '';
@@ -143,10 +151,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Fira Code', mono
 
 /* RIGHT PANEL */
 .right-panel {
-  margin-left: 42%;
   flex: 1;
-  height: calc(100vh - 52px);
-  overflow-y: auto;
   padding: 20vh 44px 80px;
   display: flex;
   flex-direction: column;
@@ -228,7 +233,7 @@ p { font-size: 15px; line-height: 1.7; margin-bottom: 10px; }
     width: 100%; min-width: 0; max-width: none;
     height: 100vw; padding: 0;
   }
-  .right-panel { margin-left: 0; height: auto; overflow: visible; padding: 28px 24px 50px; }
+  .right-panel { height: auto; overflow: visible; padding: 28px 24px 50px; }
   .logo-text { font-size: 26px; }
   .triskelion-area { width: 140px; height: 130px; }
   .bigi-linn { font-size: 20px; }
