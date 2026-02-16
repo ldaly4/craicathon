@@ -62,9 +62,9 @@ body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Mono', 
 
 /* LEFT PANEL */
 .left-panel {
-  width: 48%;
-  min-width: 360px;
-  max-width: 540px;
+  width: 52%;
+  min-width: 380px;
+  max-width: 580px;
   height: calc(100vh - 80px);
   position: sticky;
   top: 80px;
@@ -218,7 +218,7 @@ p { font-family: 'IBM Plex Mono', monospace; font-size: 14px; line-height: 1.8; 
 
   <!-- LEFT -->
   <div class="left-panel">
-    <video id="bgvid" autoplay muted loop playsinline webkit-playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;object-position:center top;">
+    <video id="bgvid" autoplay muted loop playsinline webkit-playsinline style="position:absolute;top:-40px;left:0;width:100%;height:calc(100% + 40px);object-fit:contain;object-position:center top;">
       <source src="finallogo.mp4" type="video/mp4">
 
     </video>
