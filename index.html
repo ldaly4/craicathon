@@ -254,7 +254,7 @@ p { font-size: 15px; line-height: 1.7; margin-bottom: 10px; }
 
   <!-- LEFT -->
   <div class="left-panel">
-    <video autoplay muted loop playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;object-position:center center;">
+    <video id="bgvid" autoplay muted loop playsinline webkit-playsinline style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;object-position:center center;">
       <source src="finallogo.mp4" type="video/mp4">
     </video>
   </div>
@@ -318,8 +318,16 @@ p { font-size: 15px; line-height: 1.7; margin-bottom: 10px; }
 document.addEventListener('DOMContentLoaded', () => {
   const ll = document.querySelectorAll('#nf .il');
   const cb = document.querySelector('#nf .cb');
-  ll.forEach((l, i) => setTimeout(() => l.classList.add('on'), 300 + i * 200));
-  setTimeout(() => cb.classList.add('on'), 300 + ll.length * 200 + 150);
+  if (ll.length) ll.forEach((l, i) => setTimeout(() => l.classList.add('on'), 300 + i * 200));
+  if (cb) setTimeout(() => cb.classList.add('on'), 300 + ll.length * 200 + 150);
+
+  // Force autoplay on mobile (iOS Safari workaround)
+  const vid = document.getElementById('bgvid');
+  if (vid) {
+    vid.play().catch(() => {});
+    document.addEventListener('touchstart', () => vid.play().catch(() => {}), { once: true });
+    document.addEventListener('click', () => vid.play().catch(() => {}), { once: true });
+  }
 });
 </script>
 </body>
