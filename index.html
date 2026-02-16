@@ -148,13 +148,16 @@ body { background: var(--bg); color: var(--text); font-family: 'Fira Code', mono
   height: calc(100vh - 52px);
   overflow-y: auto;
   padding: 20vh 44px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .right-panel::-webkit-scrollbar { width: 5px; }
 .right-panel::-webkit-scrollbar-track { background: var(--bg); }
 .right-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
 /* SECTIONS */
-.sec { margin-bottom: 48px; max-width: 500px; }
+.sec { margin-bottom: 48px; max-width: 500px; width: 100%; }
 
 .q {
   font-family: 'MedievalSharp', cursive;
@@ -213,7 +216,7 @@ p { font-size: 15px; line-height: 1.7; margin-bottom: 10px; }
   border-top: 1px solid var(--border);
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px; color: var(--text-faint);
-  letter-spacing: 1px; max-width: 500px;
+  letter-spacing: 1px; max-width: 500px; width: 100%;
 }
 
 /* MOBILE */
