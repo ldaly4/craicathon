@@ -93,6 +93,27 @@ body { background: var(--bg); color: var(--text); font-family: 'IBM Plex Mono', 
   padding: 4vh 0 100px 48px;
 }
 
+/* LANG TOGGLE */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  border: 1.5px solid var(--green);
+  border-radius: 6px;
+  padding: 7px 14px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 36px;
+}
+.lang-toggle:hover { color: var(--green-light); border-color: var(--green-light); }
+
 /* SECTIONS */
 .sec { margin-bottom: 48px; max-width: 560px; }
 
@@ -211,7 +232,7 @@ p { font-family: 'IBM Plex Mono', monospace; font-size: 14px; line-height: 1.8; 
 </a>
 
 <!-- MOBILE FLOATING APPLY BUTTON -->
-<a href="https://luma.com/b3qdbwg3" target="_blank" class="mobile-apply">Apply Now</a>
+<a href="https://luma.com/b3qdbwg3" target="_blank" class="mobile-apply" id="mobile-apply-btn">Apply Now</a>
 
 <!-- LAYOUT -->
 <div class="layout">
@@ -220,56 +241,60 @@ p { font-family: 'IBM Plex Mono', monospace; font-size: 14px; line-height: 1.8; 
   <div class="left-panel">
     <video id="bgvid" autoplay muted loop playsinline webkit-playsinline style="position:absolute;top:-80px;left:0;width:100%;height:calc(100% + 80px);object-fit:contain;object-position:center top;">
       <source src="finallogo.mp4" type="video/mp4">
-
     </video>
   </div>
 
   <!-- RIGHT -->
   <div class="right-panel" id="rp">
 
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <span id="langLabel">Aistrigh go Gaeilge</span>
+    </button>
+
     <div class="sec">
-      <div class="q">Build something for Irish language and culture.<br>In a day.</div>
-      <p>Coders, Irish speakers, artists, musicians, and anyone curious — form a team, make something, demo it, win prizes. No fluency or coding experience needed.</p>
+      <div class="q" id="t-heading">Build something for Irish language and culture.<br>In a day.</div>
+      <p id="t-intro">Coders, Irish speakers, artists, musicians, and anyone curious — form a team, make something, demo it, win prizes. No fluency or coding experience needed.</p>
     </div>
 
     <div class="sec">
-      <div class="tag">What you could build</div>
+      <div class="tag" id="t-build-tag">What you could build</div>
       <div class="chips">
-        <span class="chip">Irish language games</span>
-        <span class="chip">Tools as Gaeilge</span>
-        <span class="chip">Generative art × mythology</span>
-        <span class="chip">Browser extensions</span>
-        <span class="chip">Interactive storytelling</span>
-        <span class="chip">Trad music tech</span>
-        <span class="chip">Keyboard / translation tools</span>
-        <span class="chip">Something stupid and fun</span>
+        <span class="chip" data-en="Irish language games" data-ga="Cluichí Gaeilge">Irish language games</span>
+        <span class="chip" data-en="Tools as Gaeilge" data-ga="Uirlisí as Gaeilge">Tools as Gaeilge</span>
+        <span class="chip" data-en="Generative art × mythology" data-ga="Ealaín ghinte × miotaseolaíocht">Generative art × mythology</span>
+        <span class="chip" data-en="Browser extensions" data-ga="Breiseáin brabhsálaí">Browser extensions</span>
+        <span class="chip" data-en="Interactive storytelling" data-ga="Scéalaíocht idirghníomhach">Interactive storytelling</span>
+        <span class="chip" data-en="Trad music tech" data-ga="Teicneolaíocht ceoil thraidisiúnta">Trad music tech</span>
+        <span class="chip" data-en="Keyboard / translation tools" data-ga="Uirlisí méarchláir / aistriúcháin">Keyboard / translation tools</span>
+        <span class="chip" data-en="Something stupid and fun" data-ga="Rud éigin amaideach agus spraíúil">Something stupid and fun</span>
       </div>
     </div>
 
     <div class="sec" id="apply">
-      <div class="tag">Get involved</div>
+      <div class="tag" id="t-involved-tag">Get involved</div>
       <div class="cards">
         <div class="card">
-          <div class="ct">→ Participate</div>
-          <p>Join a team, build something in a day, present it, maybe win a prize. You don't need to code or speak Irish — just bring curiosity and ideas.</p>
-          <a href="https://luma.com/b3qdbwg3" target="_blank">Apply to participate →</a>
+          <div class="ct" data-en="→ Participate" data-ga="→ Glac páirt">→ Participate</div>
+          <p data-en="Join a team, build something in a day, present it, maybe win a prize. You don't need to code or speak Irish — just bring curiosity and ideas." data-ga="Téigh isteach i bhfoireann, tóg rud éigin in aon lá, cuir i láthair é, b'fhéidir duais a bhuachan. Ní gá duit cód a scríobh ná Gaeilge a labhairt — díreach do chuid fiosrachta agus smaointe a thabhairt leat.">Join a team, build something in a day, present it, maybe win a prize. You don't need to code or speak Irish — just bring curiosity and ideas.</p>
+          <a href="https://luma.com/b3qdbwg3" target="_blank" data-en="Apply to participate →" data-ga="Déan iarratas →">Apply to participate →</a>
         </div>
         <div class="card">
-          <div class="ct">→ Sponsor</div>
-          <p>Help us cover food, prizes, and venue. Your logo on everything, a mention on stage, and direct access to 100 builders and creatives.</p>
-          <a href="mailto:info@craicathon.ie">Get in touch →</a>
+          <div class="ct" data-en="→ Sponsor" data-ga="→ Urra">→ Sponsor</div>
+          <p data-en="Help us cover food, prizes, and venue. Your logo on everything, a mention on stage, and direct access to 100 builders and creatives." data-ga="Cabhraigh linn costas bia, duaiseanna, agus ionad a chlúdach. Do lógó ar gach rud, lua ar an stáitse, agus rochtain dhíreach ar 100 tógálaí agus cruthaitheoir.">Help us cover food, prizes, and venue. Your logo on everything, a mention on stage, and direct access to 100 builders and creatives.</p>
+          <a href="mailto:info@craicathon.ie" data-en="Get in touch →" data-ga="Déan teagmháil →">Get in touch →</a>
         </div>
         <div class="card">
-          <div class="ct">→ Promote</div>
-          <p>Know Irish speakers, coders, designers, or students who'd love this? Share it with your networks and communities.</p>
-          <a href="https://luma.com/b3qdbwg3" target="_blank">Share Craicathon →</a>
+          <div class="ct" data-en="→ Promote" data-ga="→ Scaip é">→ Promote</div>
+          <p data-en="Know Irish speakers, coders, designers, or students who'd love this? Share it with your networks and communities." data-ga="An bhfuil aithne agat ar chainteoirí Gaeilge, cláraitheorí, dearthóirí, nó mic léinn ar mhaith leo seo? Roinn é le do líonraí agus do phobail.">Know Irish speakers, coders, designers, or students who'd love this? Share it with your networks and communities.</p>
+          <a href="https://luma.com/b3qdbwg3" target="_blank" data-en="Share Craicathon →" data-ga="Roinn Craicathon →">Share Craicathon →</a>
         </div>
       </div>
     </div>
 
     <div class="sec">
-      <div class="tag">Inspiration</div>
-      <p>Find some inspiration from <a href="https://www.instagram.com/reel/DN2394oWMbz/" target="_blank" style="color:var(--green);text-decoration:none;font-weight:600;">NAMACO</a> and from <a href="https://simondarcyonline.com/" target="_blank" style="color:var(--green);text-decoration:none;font-weight:600;">Simon Darcy</a>.</p>
+      <div class="tag" id="t-inspo-tag">Inspiration</div>
+      <p id="t-inspo">Find some inspiration from <a href="https://www.instagram.com/reel/DN2394oWMbz/" target="_blank" style="color:var(--green);text-decoration:none;font-weight:600;">NAMACO</a> and from <a href="https://simondarcyonline.com/" target="_blank" style="color:var(--green);text-decoration:none;font-weight:600;">Simon Darcy</a>.</p>
     </div>
 
     <div class="footer">
@@ -281,7 +306,6 @@ p { font-family: 'IBM Plex Mono', monospace; font-size: 14px; line-height: 1.8; 
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Force autoplay on mobile (iOS Safari workaround)
   const vid = document.getElementById('bgvid');
   if (vid) {
     vid.play().catch(() => {});
@@ -289,6 +313,50 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', () => vid.play().catch(() => {}), { once: true });
   }
 });
+
+let lang = 'en';
+
+const translations = {
+  heading: {
+    en: 'Build something for Irish language and culture.<br>In a day.',
+    ga: 'Tóg rud éigin don Ghaeilge agus cultúr na hÉireann.<br>In aon lá amháin.'
+  },
+  intro: {
+    en: "Coders, Irish speakers, artists, musicians, and anyone curious — form a team, make something, demo it, win prizes. No fluency or coding experience needed.",
+    ga: "Cláraitheorí, cainteoirí Gaeilge, ealaíontóirí, ceoltóirí, agus cách — foireann a chur le chéile, rud a dhéanamh, é a thaispeáint, duaiseanna a bhuachan. Níl gá le líofacht ná le taithí ríomhchláraithe."
+  },
+  'build-tag': { en: 'What you could build', ga: "Cad a d'fhéadfá a thógáil" },
+  'involved-tag': { en: 'Get involved', ga: 'Glac páirt' },
+  'inspo-tag': { en: 'Inspiration', ga: 'Inspioráid' },
+  inspo: {
+    en: 'Find some inspiration from <a href="https://www.instagram.com/reel/DN2394oWMbz/" target="_blank" style="color:var(--green);text-decoration:none;font-weight:600;">NAMACO</a> and from <a href="https://simondarcyonline.com/" target="_blank" style="color:var(--green);text-decoration:none;font-weight:600;">Simon Darcy</a>.',
+    ga: 'Faigh inspioráid ó <a href="https://www.instagram.com/reel/DN2394oWMbz/" target="_blank" style="color:var(--green);text-decoration:none;font-weight:600;">NAMACO</a> agus ó <a href="https://simondarcyonline.com/" target="_blank" style="color:var(--green);text-decoration:none;font-weight:600;">Simon Darcy</a>.'
+  },
+  'mobile-apply': { en: 'Apply Now', ga: 'Déan Iarratas' }
+};
+
+function toggleLang() {
+  lang = lang === 'en' ? 'ga' : 'en';
+  document.documentElement.lang = lang;
+
+  // Toggle button label
+  document.getElementById('langLabel').textContent =
+    lang === 'en' ? 'Aistrigh go Gaeilge' : 'Translate to English';
+
+  // innerHTML elements
+  document.getElementById('t-heading').innerHTML = translations.heading[lang];
+  document.getElementById('t-intro').textContent = translations.intro[lang];
+  document.getElementById('t-build-tag').textContent = translations['build-tag'][lang];
+  document.getElementById('t-involved-tag').textContent = translations['involved-tag'][lang];
+  document.getElementById('t-inspo-tag').textContent = translations['inspo-tag'][lang];
+  document.getElementById('t-inspo').innerHTML = translations.inspo[lang];
+  document.getElementById('mobile-apply-btn').textContent = translations['mobile-apply'][lang];
+
+  // data-en / data-ga elements
+  document.querySelectorAll('[data-en][data-ga]').forEach(el => {
+    el.textContent = el.dataset[lang];
+  });
+}
 </script>
 </body>
 </html>
